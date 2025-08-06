@@ -1,0 +1,43 @@
+type Query {
+    # Get all notes
+    getAllNotes: [Notes!]!
+    
+    # Get notes by email
+    getNotesByEmail(email: String!): [Notes!]!
+
+    # Search notes by keyword
+    searchNotes(keyword: String!): [Notes!]!
+    
+    # Get favorite notes (returns actual Notes objects)
+    getFavoriteNotes(email: String!): [Notes!]!
+    
+   
+}
+
+type Mutation {
+    # Add note to favorites
+    addToFavorites(email: String!, folder_id: String!): FavNotes!
+    
+    # Remove note from favorites
+    removeFromFavorites(email: String!, folder_id: String!): Boolean!
+}
+
+type Notes {
+    id: String!
+    email: String!
+    title: String!
+    subject: String!
+    course_code: String!
+    tags: [String!]!
+    description: String!
+    folder_id: String
+    urls: [String!]
+    createdAt: String
+}
+
+type FavNotes {
+    id: String!
+    email: String!
+    folder_id: String!
+    createdAt: String
+}
