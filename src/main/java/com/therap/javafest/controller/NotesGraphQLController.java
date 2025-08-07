@@ -17,17 +17,12 @@ public class NotesGraphQLController {
     
     private final NotesService notesService;
     
-    @QueryMapping
-    public List<Notes> getAllNotes() {
-        return notesService.getAllNotes();
-    }
+
     
     @QueryMapping
     public List<Notes> getNotesByEmail(@Argument String email) {
         return notesService.getNotesByEmail(email);
     }
-    
- 
     
     @QueryMapping
     public List<Notes> searchNotes(@Argument String keyword) {

@@ -1,7 +1,4 @@
 type Query {
-    # Get all notes
-    getAllNotes: [Notes!]!
-    
     # Get notes by email
     getNotesByEmail(email: String!): [Notes!]!
 
@@ -11,7 +8,6 @@ type Query {
     # Get favorite notes (returns actual Notes objects)
     getFavoriteNotes(email: String!): [Notes!]!
     
-   
 }
 
 type Mutation {
@@ -33,6 +29,9 @@ type Notes {
     folder_id: String
     urls: [String!]
     createdAt: String
+    isFavorite: Boolean!
+    score: Int!
+    feedback: String!
 }
 
 type FavNotes {

@@ -26,6 +26,9 @@ public class Notes {
     private String folder_id;
     private List<String> urls;
     private LocalDateTime createdAt;
+    private boolean isFavorite;
+    private String score;
+    private String feedback;
     
     public String getId() {
         return id != null ? id.toString() : null;
