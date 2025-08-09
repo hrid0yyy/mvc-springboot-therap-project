@@ -24,7 +24,7 @@ public class NotesApiClient {
     
     private final RestTemplate restTemplate = new RestTemplate();
     
-    @Value("${app.fastapi.url:http://localhost:8001}")
+    @Value("${app.fastapi.url}")
     private String notesApiUrl;
 
     public Map<String, Object> uploadNotes(List<MultipartFile> files, 

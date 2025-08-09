@@ -20,19 +20,17 @@ public class FavNotesGraphQLController {
     private final FavNotesService favNotesService;
     
     @QueryMapping
-    public List<Notes> getFavoriteNotes(@Argument String email) {
-        return favNotesService.getFavoriteNotesByEmail(email);
-    }
-    
-    
-    
-    @MutationMapping
-    public FavNotes addToFavorites(@Argument String email, @Argument String folder_id) {
-        return favNotesService.addToFavorites(email, folder_id);
+    public List<Notes> getFavoriteNotes() {
+        return favNotesService.getFavoriteNotesByEmail();
     }
     
     @MutationMapping
-    public Boolean removeFromFavorites(@Argument String email, @Argument String folder_id) {
-        return favNotesService.removeFromFavorites(email, folder_id);
+    public FavNotes addToFavorites(@Argument String folder_id) {
+        return favNotesService.addToFavorites( folder_id);
+    }
+    
+    @MutationMapping
+    public Boolean removeFromFavorites( @Argument String folder_id) {
+        return favNotesService.removeFromFavorites( folder_id);
     }
 }

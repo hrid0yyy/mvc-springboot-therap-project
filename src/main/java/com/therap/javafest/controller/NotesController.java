@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.therap.javafest.api.NotesApiClient;
 import com.therap.javafest.dto.NotesDeleteRequest;
 import com.therap.javafest.dto.PublicApiResponse;
+import com.therap.javafest.security.SessionService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,11 +25,10 @@ import lombok.RequiredArgsConstructor;
 public class NotesController {
     
     private final NotesApiClient notesApiClient;
-
+    private final SessionService sessionService;
     @PostMapping
     public ResponseEntity<?> uploadNotes(
             @RequestParam("files") List<MultipartFile> files,
-            @RequestParam("email") String email,
             @RequestParam("title") String title,
             @RequestParam("subject") String subject,
             @RequestParam("course_code") String courseCode,
@@ -36,6 +36,7 @@ public class NotesController {
             @RequestParam("description") String description) {
         
         try {
+            String email = sessionService.getEmail();
             Map<String, Object> result = notesApiClient.uploadNotes(
                 files, email, title, subject, courseCode, tags, description
             );

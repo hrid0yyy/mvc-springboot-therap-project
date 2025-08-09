@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.therap.javafest.model.Notes;
 import com.therap.javafest.repository.FavNotesRepository;
 import com.therap.javafest.repository.NotesRepository;
+import com.therap.javafest.security.SessionService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,7 +18,7 @@ public class NotesService {
     
     private final NotesRepository notesRepository;
     private final FavNotesRepository favNotesRepository;
-    
+    private final SessionService sessionService;
     public List<Notes> getNotesByEmail(String email) {
         List<Notes> notes =notesRepository.findByEmail(email);
 
@@ -38,8 +39,7 @@ public class NotesService {
     
     return notes.stream()
         .map(note -> {
-            String email = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getName();
- 
+            String email = sessionService.getEmail();
             boolean isFavorite = favNotesRepository.existsByEmailAndFolder_id(email, note.getFolder_id());
             note.setFavorite(isFavorite); 
             return note;

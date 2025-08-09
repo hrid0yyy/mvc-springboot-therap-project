@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Data
 public class NotesUploadRequest {
-    private String email;
     private String title;
     private String subject;
     private String courseCode;
